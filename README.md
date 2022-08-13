@@ -1,6 +1,10 @@
 # CBAM_MatLab
 matlab code  for Cbam
 
+# Channel Attention Module Figure
+![1660400930088](https://user-images.githubusercontent.com/102503666/184498739-6d151dd0-4ccd-4e77-b6ee-4af0718667f5.jpg)
+
+# Spatial Attention Module Figure
 
 # Others
 
@@ -14,4 +18,4 @@ https://space.bilibili.com/216803355?spm_id_from=333.788.0.0
 If you want to contact with me.   
 This is my E-mail address： ImageVisioner@outlook.com
 
-Thanks u 
+Thanks a lot
