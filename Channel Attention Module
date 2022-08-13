@@ -1,0 +1,43 @@
+lgraph = layerGraph();
+tempLayers = imageInputLayer([227 227 3],"Name","imageinput");
+lgraph = addLayers(lgraph,tempLayers);
+
+tempLayers = maxPooling2dLayer([5 5],"Name","maxpool_1","Padding","same");
+lgraph = addLayers(lgraph,tempLayers);
+
+tempLayers = averagePooling2dLayer([5 5],"Name","avgpool2d_1","Padding","same");
+lgraph = addLayers(lgraph,tempLayers);
+
+tempLayers = [
+    multiplicationLayer(2,"Name","multiplication_1")
+    fullyConnectedLayer(10,"Name","fc_1")
+    fullyConnectedLayer(10,"Name","fc_2")
+    fullyConnectedLayer(10,"Name","fc_3")
+    leakyReluLayer(0.01,"Name","leakyrelu_1")];
+lgraph = addLayers(lgraph,tempLayers);
+
+tempLayers = averagePooling2dLayer([5 5],"Name","avgpool2d_2","Padding","same");
+lgraph = addLayers(lgraph,tempLayers);
+
+tempLayers = maxPooling2dLayer([5 5],"Name","maxpool_2","Padding","same");
+lgraph = addLayers(lgraph,tempLayers);
+
+tempLayers = [
+    multiplicationLayer(2,"Name","multiplication_2")
+    leakyReluLayer(0.01,"Name","leakyrelu_2")
+    sigmoidLayer("Name","sigmoid")
+    yolov2OutputLayer([16 16;32 32],"Name","yolov2-out")];
+lgraph = addLayers(lgraph,tempLayers);
+
+% 清理辅助变量
+clear tempLayers;
+
+%链接所有层
+lgraph = connectLayers(lgraph,"imageinput","maxpool_1");
+lgraph = connectLayers(lgraph,"imageinput","avgpool2d_1");
+lgraph = connectLayers(lgraph,"maxpool_1","multiplication_1/in2");
+lgraph = connectLayers(lgraph,"avgpool2d_1","multiplication_1/in1");
+lgraph = connectLayers(lgraph,"leakyrelu_1","avgpool2d_2");
+lgraph = connectLayers(lgraph,"leakyrelu_1","maxpool_2");
+lgraph = connectLayers(lgraph,"avgpool2d_2","multiplication_2/in1");
+lgraph = connectLayers(lgraph,"maxpool_2","multiplication_2/in2");
