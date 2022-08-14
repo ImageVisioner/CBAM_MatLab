@@ -5,6 +5,7 @@ matlab code  for Cbam
 ![1660400930088](https://user-images.githubusercontent.com/102503666/184498739-6d151dd0-4ccd-4e77-b6ee-4af0718667f5.jpg)
 
 # Spatial Attention Module Figure
+![image](https://user-images.githubusercontent.com/102503666/184538759-11add4eb-6fd8-438a-ad99-1cf1a65ad28c.png)
 
 # Others
 
