@@ -1,6 +1,8 @@
 layers = [
     imageInputLayer([227 227 3],"Name","imageinput")
-    maxPooling2dLayer([5 5],"Name","maxpool","Padding","same")
+    convolution2dLayer([3 3],32,"Name","conv","Padding","same")
     averagePooling2dLayer([5 5],"Name","avgpool2d","Padding","same")
+    maxPooling2dLayer([5 5],"Name","maxpool","Padding","same")
+    leakyReluLayer(0.01,"Name","leakyrelu")
     sigmoidLayer("Name","sigmoid")
     yolov2OutputLayer([16 16;32 32],"Name","yolov2-out")];
